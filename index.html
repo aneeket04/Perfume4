@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Éclat | Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <h1 class="logo">Éclat</h1>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="checkout.html">Cart / Checkout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Discover Your Signature Scent</h2>
+        <p>Designer, niche, and middle eastern perfumes for men and women. Browse, add to cart, and checkout in minutes.</p>
+        <a href="#products" class="btn">Shop Now</a>
+      </div>
+    </section>
+
+    <section class="container controls" id="products">
+      <h3>Perfume Collection</h3>
+      <div class="control-grid">
+        <input type="text" id="searchInput" placeholder="Search by perfume name..." />
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="Designer">Designer Perfumes</option>
+          <option value="Niche">Niche Perfumes</option>
+          <option value="Middle Eastern">Middle Eastern Fragrances</option>
+        </select>
+        <select id="genderFilter">
+          <option value="all">All Genders</option>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option value="Unisex">Unisex</option>
+        </select>
+      </div>
+      <p id="resultsCount" class="results-count"></p>
+    </section>
+
+    <section class="container products-grid" id="productsGrid"></section>
+
+    <section class="container cart-bar">
+      <div>
+        <h3>Your Cart</h3>
+        <p><span id="cartCount">0</span> item(s) | Total: $<span id="cartTotal">0.00</span></p>
+      </div>
+      <a href="checkout.html" class="btn">Proceed to Checkout</a>
+    </section>
+  </main>
+
+  <div id="imageModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn" aria-label="Close image preview">&times;</button>
+      <img id="modalImage" src="" alt="Perfume preview" />
+      <p id="modalTitle"></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

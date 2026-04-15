@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Éclat | Checkout</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <h1 class="logo">Éclat</h1>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="checkout.html" class="active">Cart / Checkout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <h2>Checkout</h2>
+    <p>Review your selected perfumes, update quantity, and place your order securely.</p>
+
+    <section class="checkout-grid">
+      <div class="info-card">
+        <h3>Your Items</h3>
+        <div id="checkoutItems"></div>
+        <p class="checkout-total">Grand Total: $<span id="checkoutTotal">0.00</span></p>
+      </div>
+
+      <div class="info-card">
+        <h3>Billing Details</h3>
+        <form id="checkoutForm" class="form-stack">
+          <input type="text" id="fullName" placeholder="Full Name" required />
+          <input type="email" id="checkoutEmail" placeholder="Email Address" required />
+          <input type="text" id="address" placeholder="Shipping Address" required />
+          <select id="paymentMethod" required>
+            <option value="">Select Payment Method</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+          </select>
+          <button type="submit" class="btn">Place Order</button>
+        </form>
+        <p id="orderStatus" class="status-text"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
