@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aneeket04.github.io/Perfume4/sitemap.xml
