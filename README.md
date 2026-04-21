@@ -27,3 +27,19 @@ To publish:
 1. Push this code to `main` (or `master`).
 2. In GitHub repository settings, set **Pages** source to **GitHub Actions**.
 3. The workflow deploys the site automatically.
+
+## Add correct product photos
+
+The app now expects local image files instead of third-party image URLs.
+
+1. Create a folder: `assets/images`
+2. Add one photo per product using these exact names:
+   - `01.jpg`, `02.jpg`, ..., `30.jpg`
+3. Commit and push the images to GitHub.
+4. GitHub Pages will redeploy and show your photos.
+
+Example mapping:
+- `01.jpg` -> Dior Sauvage
+- `02.jpg` -> Chanel Bleu de Chanel
+- ...
+- `30.jpg` -> Lattafa Yara

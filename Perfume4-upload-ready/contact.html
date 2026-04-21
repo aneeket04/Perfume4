@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Éclat | Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <h1 class="logo">Éclat</h1>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="checkout.html">Cart / Checkout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <h2>Contact & Feedback</h2>
+    <p>Need recommendations or want to share your shopping experience? We would love to hear from you.</p>
+
+    <div class="contact-grid">
+      <section class="info-card">
+        <h3>Contact Details</h3>
+        <p>Email: support@eclatparfum.com</p>
+        <p>Phone: +91 90000 12345</p>
+        <p>Address: 21 Fragrance Street, Mumbai, India</p>
+      </section>
+
+      <section class="info-card">
+        <h3>Feedback Form</h3>
+        <form id="feedbackForm" class="form-stack">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="email" id="email" placeholder="Your Email" required />
+          <select id="rating" required>
+            <option value="">Rate Your Experience</option>
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Very Good</option>
+            <option value="3">3 - Good</option>
+            <option value="2">2 - Fair</option>
+            <option value="1">1 - Poor</option>
+          </select>
+          <textarea id="message" rows="5" placeholder="Write your feedback..." required></textarea>
+          <button type="submit" class="btn">Submit Feedback</button>
+        </form>
+        <p id="feedbackStatus" class="status-text"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,39 +1,54 @@
+function buildPerfumeImage(id) {
+  // Use optimized local files for faster load on GitHub Pages.
+  const safeId = String(id).padStart(2, "0");
+  return `assets/images/${safeId}.optimized.jpg`;
+}
+
+function buildFallbackImage(name) {
+  const safeName = encodeURIComponent(name);
+  return `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='640'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%231d1d27'/><stop offset='100%' stop-color='%230f0f14'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='46%' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI, Arial, sans-serif' font-size='34' fill='%23e0b15f'>Image Missing</text><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI, Arial, sans-serif' font-size='22' fill='%23f5f5f8'>${safeName}</text><text x='50%' y='64%' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI, Arial, sans-serif' font-size='16' fill='%23bfc3d1'>Upload assets/images/${safeName}.jpg</text></svg>`;
+}
+
+function getSafeProductImage(product) {
+  return product.image || buildPerfumeImage(product.id);
+}
+
 const perfumes = [
   // Designer perfumes (10)
-  { id: 1, name: "Dior Sauvage", category: "Designer", gender: "Men", price: 129, image: "https://source.unsplash.com/600x600/?dior,sauvage,perfume,bottle" },
-  { id: 2, name: "Chanel Bleu de Chanel", category: "Designer", gender: "Men", price: 135, image: "https://source.unsplash.com/600x600/?chanel,bleu,de,parfum,bottle" },
-  { id: 3, name: "YSL Libre", category: "Designer", gender: "Women", price: 118, image: "https://source.unsplash.com/600x600/?ysl,libre,perfume,bottle" },
-  { id: 4, name: "Gucci Bloom", category: "Designer", gender: "Women", price: 112, image: "https://source.unsplash.com/600x600/?gucci,bloom,perfume,bottle" },
-  { id: 5, name: "Armani Acqua di Gio", category: "Designer", gender: "Men", price: 120, image: "https://source.unsplash.com/600x600/?armani,acqua,di,gio,perfume" },
-  { id: 6, name: "Prada Paradoxe", category: "Designer", gender: "Women", price: 124, image: "https://source.unsplash.com/600x600/?prada,paradoxe,perfume,bottle" },
-  { id: 7, name: "Versace Eros", category: "Designer", gender: "Men", price: 110, image: "https://source.unsplash.com/600x600/?versace,eros,perfume,bottle" },
-  { id: 8, name: "Lancôme La Vie Est Belle", category: "Designer", gender: "Women", price: 122, image: "https://source.unsplash.com/600x600/?lancome,la,vie,est,belle,perfume" },
-  { id: 9, name: "Tom Ford Black Orchid", category: "Designer", gender: "Unisex", price: 149, image: "https://source.unsplash.com/600x600/?tom,ford,black,orchid,perfume" },
-  { id: 10, name: "Givenchy Gentleman", category: "Designer", gender: "Men", price: 108, image: "https://source.unsplash.com/600x600/?givenchy,gentleman,perfume,bottle" },
+  { id: 1, name: "Dior Sauvage", category: "Designer", gender: "Men", price: 129, image: buildPerfumeImage(1) },
+  { id: 2, name: "Chanel Bleu de Chanel", category: "Designer", gender: "Men", price: 135, image: buildPerfumeImage(2) },
+  { id: 3, name: "YSL Libre", category: "Designer", gender: "Women", price: 118, image: buildPerfumeImage(3) },
+  { id: 4, name: "Gucci Bloom", category: "Designer", gender: "Women", price: 112, image: buildPerfumeImage(4) },
+  { id: 5, name: "Armani Acqua di Gio", category: "Designer", gender: "Men", price: 120, image: buildPerfumeImage(5) },
+  { id: 6, name: "Prada Paradoxe", category: "Designer", gender: "Women", price: 124, image: buildPerfumeImage(6) },
+  { id: 7, name: "Versace Eros", category: "Designer", gender: "Men", price: 110, image: buildPerfumeImage(7) },
+  { id: 8, name: "Lancôme La Vie Est Belle", category: "Designer", gender: "Women", price: 122, image: buildPerfumeImage(8) },
+  { id: 9, name: "Tom Ford Black Orchid", category: "Designer", gender: "Unisex", price: 149, image: buildPerfumeImage(9) },
+  { id: 10, name: "Givenchy Gentleman", category: "Designer", gender: "Men", price: 108, image: buildPerfumeImage(10) },
 
   // Niche perfumes (10)
-  { id: 11, name: "Creed Aventus", category: "Niche", gender: "Men", price: 310, image: "https://source.unsplash.com/600x600/?creed,aventus,perfume,bottle" },
-  { id: 12, name: "Maison Francis Kurkdjian Baccarat Rouge 540", category: "Niche", gender: "Unisex", price: 355, image: "https://source.unsplash.com/600x600/?baccarat,rouge,540,perfume,bottle" },
-  { id: 13, name: "Byredo Gypsy Water", category: "Niche", gender: "Unisex", price: 265, image: "https://source.unsplash.com/600x600/?byredo,gypsy,water,perfume,bottle" },
-  { id: 14, name: "Le Labo Santal 33", category: "Niche", gender: "Unisex", price: 289, image: "https://source.unsplash.com/600x600/?le,labo,santal,33,perfume" },
-  { id: 15, name: "Amouage Reflection Woman", category: "Niche", gender: "Women", price: 295, image: "https://source.unsplash.com/600x600/?amouage,reflection,woman,perfume" },
-  { id: 16, name: "Frederic Malle Portrait of a Lady", category: "Niche", gender: "Women", price: 320, image: "https://source.unsplash.com/600x600/?frederic,malle,portrait,of,a,lady,perfume" },
-  { id: 17, name: "Xerjoff Naxos", category: "Niche", gender: "Men", price: 275, image: "https://source.unsplash.com/600x600/?xerjoff,naxos,perfume,bottle" },
-  { id: 18, name: "Roja Parfums Elysium", category: "Niche", gender: "Men", price: 335, image: "https://source.unsplash.com/600x600/?roja,elysium,perfume,bottle" },
-  { id: 19, name: "Parfums de Marly Delina", category: "Niche", gender: "Women", price: 300, image: "https://source.unsplash.com/600x600/?delina,parfums,de,marly,perfume" },
-  { id: 20, name: "Diptyque Tam Dao", category: "Niche", gender: "Unisex", price: 210, image: "https://source.unsplash.com/600x600/?diptyque,tam,dao,perfume,bottle" },
+  { id: 11, name: "Creed Aventus", category: "Niche", gender: "Men", price: 310, image: buildPerfumeImage(11) },
+  { id: 12, name: "Maison Francis Kurkdjian Baccarat Rouge 540", category: "Niche", gender: "Unisex", price: 355, image: buildPerfumeImage(12) },
+  { id: 13, name: "Byredo Gypsy Water", category: "Niche", gender: "Unisex", price: 265, image: buildPerfumeImage(13) },
+  { id: 14, name: "Le Labo Santal 33", category: "Niche", gender: "Unisex", price: 289, image: buildPerfumeImage(14) },
+  { id: 15, name: "Amouage Reflection Woman", category: "Niche", gender: "Women", price: 295, image: buildPerfumeImage(15) },
+  { id: 16, name: "Frederic Malle Portrait of a Lady", category: "Niche", gender: "Women", price: 320, image: buildPerfumeImage(16) },
+  { id: 17, name: "Xerjoff Naxos", category: "Niche", gender: "Men", price: 275, image: buildPerfumeImage(17) },
+  { id: 18, name: "Roja Parfums Elysium", category: "Niche", gender: "Men", price: 335, image: buildPerfumeImage(18) },
+  { id: 19, name: "Parfums de Marly Delina", category: "Niche", gender: "Women", price: 300, image: buildPerfumeImage(19) },
+  { id: 20, name: "Diptyque Tam Dao", category: "Niche", gender: "Unisex", price: 210, image: buildPerfumeImage(20) },
 
   // Middle Eastern fragrances (10)
-  { id: 21, name: "Lattafa Khamrah", category: "Middle Eastern", gender: "Unisex", price: 59, image: "https://source.unsplash.com/600x600/?lattafa,khamrah,perfume,bottle" },
-  { id: 22, name: "Rasasi Hawas", category: "Middle Eastern", gender: "Men", price: 68, image: "https://source.unsplash.com/600x600/?rasasi,hawas,perfume,bottle" },
-  { id: 23, name: "Ajmal Aristocrat", category: "Middle Eastern", gender: "Women", price: 72, image: "https://source.unsplash.com/600x600/?ajmal,aristocrat,perfume,bottle" },
-  { id: 24, name: "Afnan 9PM", category: "Middle Eastern", gender: "Men", price: 65, image: "https://source.unsplash.com/600x600/?afnan,9pm,perfume,bottle" },
-  { id: 25, name: "Swiss Arabian Shaghaf Oud", category: "Middle Eastern", gender: "Unisex", price: 78, image: "https://source.unsplash.com/600x600/?swiss,arabian,shaghaf,oud,perfume" },
-  { id: 26, name: "Armaf Club de Nuit Intense", category: "Middle Eastern", gender: "Men", price: 70, image: "https://source.unsplash.com/600x600/?armaf,club,de,nuit,intense,perfume" },
-  { id: 27, name: "Nabeel Touch Me", category: "Middle Eastern", gender: "Women", price: 55, image: "https://source.unsplash.com/600x600/?nabeel,touch,me,perfume,bottle" },
-  { id: 28, name: "Al Haramain Amber Oud Gold", category: "Middle Eastern", gender: "Unisex", price: 85, image: "https://source.unsplash.com/600x600/?al,haramain,amber,oud,gold,perfume" },
-  { id: 29, name: "Mancera Instant Crush", category: "Middle Eastern", gender: "Unisex", price: 145, image: "https://source.unsplash.com/600x600/?mancera,instant,crush,perfume,bottle" },
-  { id: 30, name: "Lattafa Yara", category: "Middle Eastern", gender: "Women", price: 52, image: "https://source.unsplash.com/600x600/?lattafa,yara,perfume,bottle" }
+  { id: 21, name: "Lattafa Khamrah", category: "Middle Eastern", gender: "Unisex", price: 59, image: buildPerfumeImage(21) },
+  { id: 22, name: "Rasasi Hawas", category: "Middle Eastern", gender: "Men", price: 68, image: buildPerfumeImage(22) },
+  { id: 23, name: "Ajmal Aristocrat", category: "Middle Eastern", gender: "Women", price: 72, image: buildPerfumeImage(23) },
+  { id: 24, name: "Afnan 9PM", category: "Middle Eastern", gender: "Men", price: 65, image: buildPerfumeImage(24) },
+  { id: 25, name: "Swiss Arabian Shaghaf Oud", category: "Middle Eastern", gender: "Unisex", price: 78, image: buildPerfumeImage(25) },
+  { id: 26, name: "Armaf Club de Nuit Intense", category: "Middle Eastern", gender: "Men", price: 70, image: buildPerfumeImage(26) },
+  { id: 27, name: "Nabeel Touch Me", category: "Middle Eastern", gender: "Women", price: 55, image: buildPerfumeImage(27) },
+  { id: 28, name: "Al Haramain Amber Oud Gold", category: "Middle Eastern", gender: "Unisex", price: 85, image: buildPerfumeImage(28) },
+  { id: 29, name: "Mancera Instant Crush", category: "Middle Eastern", gender: "Unisex", price: 145, image: buildPerfumeImage(29) },
+  { id: 30, name: "Lattafa Yara", category: "Middle Eastern", gender: "Women", price: 52, image: buildPerfumeImage(30) }
 ];
 
 const CART_KEY = "aromaVaultCart";
@@ -126,7 +141,7 @@ function renderProducts() {
 
   grid.innerHTML = filtered.map((item) => `
     <article class="product-card">
-      <img src="${item.image}" alt="${item.name}" data-product-id="${item.id}" />
+      <img src="${getSafeProductImage(item)}" alt="${item.name}" data-product-id="${item.id}" onerror="this.onerror=null;this.src='${buildFallbackImage("Perfume Photo")}';" />
       <div class="product-body">
         <h4>${item.name}</h4>
         <div class="badge-row">
@@ -182,7 +197,7 @@ function renderProductDetail() {
 
   productDetail.innerHTML = `
     <article class="product-detail-layout">
-      <img src="${product.image}" alt="${product.name}" class="product-detail-image" />
+      <img src="${getSafeProductImage(product)}" alt="${product.name}" class="product-detail-image" onerror="this.onerror=null;this.src='${buildFallbackImage("Perfume Photo")}';" />
       <div class="product-detail-info">
         <h2>${product.name}</h2>
         <p><span class="badge">${product.category}</span> <span class="badge">${product.gender}</span></p>
