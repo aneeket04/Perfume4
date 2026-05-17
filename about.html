@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GWTW44PSPQ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-GWTW44PSPQ');
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Éclat | About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <h1 class="logo">Éclat</h1>
+      <a href="index.html" class="logo">Éclat</a>
       <nav>
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html" class="active">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="checkout.html">Cart / Checkout</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
         </ul>
       </nav>
+      <div class="nav-actions">
+        <a href="checkout.html" class="cart-pill" aria-label="View cart">
+          Cart <span id="headerCartCount" class="cart-pill__count">0</span>
+        </a>
+      </div>
     </div>
   </header>
 
   <main class="container page-content">
-    <h2>About Éclat</h2>
-    <p>
+    <h2 class="reveal">About Éclat</h2>
+    <p class="reveal">
       Éclat is built for fragrance lovers who want to explore premium designer perfumes, exclusive niche blends,
-      and rich middle eastern aromas in one place.
+      and rich Middle Eastern aromas in one immersive storefront.
     </p>
-    <p>
-      We curate scents for men and women with a focus on authenticity, long-lasting quality, and seamless online shopping.
-      From searching perfumes to secure checkout, the whole buying journey is simple and interactive.
+    <p class="reveal">
+      Every product includes a full scent pyramid — top, heart, and base notes — so you can shop with confidence
+      before you add to cart.
     </p>
     <div class="info-cards">
-      <article class="info-card">
+      <article class="info-card reveal">
         <h3>Our Vision</h3>
         <p>Make luxury fragrance discovery accessible, personal, and enjoyable for everyone.</p>
       </article>
-      <article class="info-card">
+      <article class="info-card reveal">
         <h3>Our Promise</h3>
         <p>Original products, transparent pricing, and fast support every step of the way.</p>
       </article>
-      <article class="info-card">
+      <article class="info-card reveal">
         <h3>Our Collection</h3>
-        <p>30 handpicked perfumes across designer, niche, and middle eastern categories.</p>
+        <p>30 handpicked perfumes across designer, niche, and Middle Eastern categories.</p>
       </article>
     </div>
   </main>
@@ -61,5 +66,8 @@
       <p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p>
     </div>
   </footer>
+
+  <script src="scent-profiles.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
