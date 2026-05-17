@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Éclat | Wishlist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo">Éclat</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a href="wishlist.html" class="wishlist-pill is-active">♥ <span id="wishlistCount">0</span></a>
+        <a href="checkout.html" class="cart-pill">Cart <span id="headerCartCount" class="cart-pill__count">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page-content">
+    <h2>Your Wishlist</h2>
+    <p class="text-muted">Scents you've saved for later.</p>
+    <section class="products-grid" id="wishlistGrid"></section>
+  </main>
+
+  <div id="quickDrawer" class="quick-drawer" aria-hidden="true">
+    <div id="quickDrawerBackdrop" class="quick-drawer__backdrop"></div>
+    <div class="quick-drawer__panel">
+      <button type="button" id="quickDrawerClose" class="quick-drawer__close" aria-label="Close">&times;</button>
+      <div id="quickDrawerBody" class="quick-drawer__body"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; 2026 Éclat</p></div>
+  </footer>
+
+  <script src="scent-profiles.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    (async function () {
+      const E = window.Eclat;
+      await E.loadCatalog();
+      E.injectSharedNav();
+      E.setupMobileNav();
+      E.setupQuickDrawer();
+      E.updateCartSummary();
+      E.updateWishlistBadge();
+      const grid = document.getElementById("wishlistGrid");
+      const ids = E.getWishlist();
+      if (!ids.length) {
+        grid.innerHTML = `<p class="empty-cart-msg">No saved scents yet. <a href="index.html#products">Browse the collection</a></p>`;
+        return;
+      }
+      const items = ids.map((id) => E.perfumes.find((p) => p.id === id)).filter(Boolean);
+      grid.innerHTML = items.map((item, i) => E.renderProductCard(item, i)).join("");
+      grid.querySelectorAll("[data-wish]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          E.toggleWishlist(Number(btn.dataset.wish));
+          location.reload();
+        });
+      });
+      grid.querySelectorAll("button[data-id], button[data-quick]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          E.openQuickDrawer(Number(btn.dataset.id || btn.dataset.quick));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
