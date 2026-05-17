@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="checkout-page">
   <header class="site-header">
     <div class="container nav-wrap">
       <a href="index.html" class="logo">Éclat</a>
@@ -35,43 +35,127 @@
     </div>
   </header>
 
-  <main class="container page-content">
-    <h2>Checkout</h2>
-    <p>Review your selected perfumes, update quantity, and place your order securely.</p>
+  <main class="container checkout-page__main page-content">
+    <div class="checkout-page__intro">
+      <h2>Checkout</h2>
+      <p>Complete your order in a few steps. All prices in Indian Rupees (INR).</p>
+    </div>
 
-    <section class="checkout-grid">
-      <div class="info-card">
-        <h3>Your Items</h3>
-        <div id="checkoutItems"></div>
-        <p class="checkout-total">Grand Total: $<span id="checkoutTotal">0.00</span></p>
+    <div class="checkout-layout">
+      <div class="checkout-flow">
+        <section class="checkout-step is-open" data-step="1">
+          <button type="button" class="checkout-step__head" aria-expanded="true">
+            <span class="checkout-step__num">1</span>
+            <span class="checkout-step__title">Shipping</span>
+            <span class="checkout-step__chevron" aria-hidden="true"></span>
+          </button>
+          <div class="checkout-step__body">
+            <form class="form-stack" id="shippingForm">
+              <label class="field">
+                <span>Full name</span>
+                <input type="text" id="fullName" placeholder="As on ID" required />
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input type="email" id="checkoutEmail" placeholder="you@email.com" required />
+              </label>
+              <label class="field">
+                <span>Phone</span>
+                <input type="tel" id="phone" placeholder="+91 98765 43210" required />
+              </label>
+              <label class="field">
+                <span>Address</span>
+                <input type="text" id="address" placeholder="House, street, area" required />
+              </label>
+              <label class="field">
+                <span>City and PIN</span>
+                <input type="text" id="cityPin" placeholder="Mumbai, 400001" required />
+              </label>
+            </form>
+            <button type="button" class="btn checkout-next">Continue to Delivery</button>
+          </div>
+        </section>
+
+        <section class="checkout-step" data-step="2">
+          <button type="button" class="checkout-step__head" aria-expanded="false">
+            <span class="checkout-step__num">2</span>
+            <span class="checkout-step__title">Delivery</span>
+            <span class="checkout-step__chevron" aria-hidden="true"></span>
+          </button>
+          <div class="checkout-step__body" hidden>
+            <div class="delivery-options">
+              <label class="delivery-option is-selected">
+                <input type="radio" name="delivery" value="standard" checked />
+                <div>
+                  <strong>Standard</strong>
+                  <span>5–7 business days</span>
+                </div>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="express" />
+                <div>
+                  <strong>Express</strong>
+                  <span>2–3 business days (+₹199)</span>
+                </div>
+              </label>
+            </div>
+            <button type="button" class="btn checkout-next">Continue to Payment</button>
+          </div>
+        </section>
+
+        <section class="checkout-step" data-step="3">
+          <button type="button" class="checkout-step__head" aria-expanded="false">
+            <span class="checkout-step__num">3</span>
+            <span class="checkout-step__title">Payment</span>
+            <span class="checkout-step__chevron" aria-hidden="true"></span>
+          </button>
+          <div class="checkout-step__body" hidden>
+            <form id="checkoutForm" class="form-stack">
+              <label class="field">
+                <span>Payment method</span>
+                <select id="paymentMethod" required>
+                  <option value="">Select method</option>
+                  <option value="UPI">UPI</option>
+                  <option value="Credit Card">Credit / Debit Card</option>
+                  <option value="Net Banking">Net Banking</option>
+                  <option value="Cash on Delivery">Cash on Delivery</option>
+                </select>
+              </label>
+              <button type="submit" class="btn btn--full" id="placeOrderBtn">Place Order</button>
+            </form>
+            <p id="orderStatus" class="status-text"></p>
+          </div>
+        </section>
+
+        <div id="checkoutItems" class="checkout-items-mobile"></div>
       </div>
 
-      <div class="info-card">
-        <h3>Billing Details</h3>
-        <form id="checkoutForm" class="form-stack">
-          <input type="text" id="fullName" placeholder="Full Name" required />
-          <input type="email" id="checkoutEmail" placeholder="Email Address" required />
-          <input type="text" id="address" placeholder="Shipping Address" required />
-          <select id="paymentMethod" required>
-            <option value="">Select Payment Method</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="Debit Card">Debit Card</option>
-            <option value="UPI">UPI</option>
-            <option value="Cash on Delivery">Cash on Delivery</option>
-          </select>
-          <button type="submit" class="btn">Place Order</button>
-        </form>
-        <p id="orderStatus" class="status-text"></p>
-      </div>
-    </section>
+      <aside class="checkout-summary" aria-label="Order summary">
+        <div class="checkout-summary__inner">
+          <h3>Order Summary</h3>
+          <div id="checkoutSummaryItems" class="checkout-summary__lines"></div>
+          <dl class="checkout-summary__totals">
+            <div><dt>Subtotal</dt><dd id="summarySubtotal">₹0</dd></div>
+            <div><dt>Shipping</dt><dd id="summaryShipping">₹0</dd></div>
+            <div id="summaryDeliveryRow" hidden><dt>Express delivery</dt><dd id="summaryDelivery">₹0</dd></div>
+            <div class="checkout-summary__grand"><dt>Total (INR)</dt><dd id="summaryTotal">₹0</dd></div>
+          </dl>
+          <p id="shippingNote" class="shipping-note">Free shipping on orders above ₹4,999</p>
+          <span id="checkoutTotal" class="visually-hidden">₹0</span>
+        </div>
+      </aside>
+    </div>
   </main>
+
+  <div id="checkoutLoader" class="checkout-loader" aria-hidden="true">
+    <div class="checkout-loader__spinner"></div>
+    <p>Processing your order…</p>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p>
-    </div>
+    <div class="container"><p>&copy; 2026 Éclat. Crafted for fragrance lovers.</p></div>
   </footer>
 
   <script src="scent-profiles.js"></script>
