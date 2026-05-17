@@ -122,7 +122,7 @@
     const profile = getScentProfile(product.id);
     const cartQty = E.getCart().filter((i) => i.id === product.id).reduce((s, i) => s + i.qty, 0);
     const primary = E.getSafeProductImage(product);
-    const lifestyle = product.hoverImage || E.buildPerfumeHoverImage(product.id);
+    const alternate = product.hoverImage || E.buildPerfumeHoverImage(product.id);
     const fallback = E.buildFallbackImage("Perfume Photo");
 
     productDetail.innerHTML = `
@@ -140,7 +140,7 @@
           </div>
           <div class="pdp-thumbs" role="list">
             <button type="button" class="pdp-thumb is-active" data-src="${primary}" data-alt="${product.name}" aria-label="Bottle view">Bottle</button>
-            <button type="button" class="pdp-thumb" data-src="${lifestyle}" data-alt="${product.name} lifestyle" aria-label="Lifestyle view">Notes</button>
+            <button type="button" class="pdp-thumb" data-src="${alternate}" data-alt="${product.name} alternate view" aria-label="Alternate view">Alt</button>
           </div>
         </div>
         <div class="product-detail-info">

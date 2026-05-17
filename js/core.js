@@ -29,7 +29,7 @@ Object.assign(window.Eclat, {
 
   buildPerfumeHoverImage(id) {
     const safeId = String(id).padStart(2, "0");
-    return `assets/images/${safeId}.lifestyle.optimized.jpg`;
+    return `assets/images/${safeId}.jpg`;
   },
 
   buildFallbackImage(name) {

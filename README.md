@@ -22,11 +22,7 @@ Open `http://127.0.0.1:5500/index.html`
 - `js/checkout.js` — checkout flow
 - `js/ui.js` — navigation, wishlist, quick drawer
 - `app.js` — bootstrap
-- `assets/images/` — product (`01.optimized.jpg`) and lifestyle (`01.lifestyle.optimized.jpg`) images
-
-## Images
-
-Run `scripts/fetch-images.ps1` to re-download stock photos from Pexels (free license).
+- `assets/images/` — product images (`01.optimized.jpg`, `01.jpg`)
 
 ## GitHub Pages
 
