@@ -47,7 +47,8 @@
         <p>Designer icons, rare niche compositions, and Middle Eastern treasures — explore 30 fragrances with full scent pyramids, notes, and effortless checkout.</p>
         <div class="hero-cta">
           <a href="#products" class="btn">Shop Collection</a>
-          <a href="about.html" class="btn btn--outline">Our Story</a>
+          <button type="button" class="btn btn--outline" id="openQuizBtn">Find Your Scent</button>
+          <a href="about.html" class="btn btn--ghost">Our Story</a>
         </div>
       </div>
     </section>
@@ -98,8 +99,11 @@
         <button type="button" class="family-pill" data-family="Oriental">Oriental</button>
         <button type="button" class="family-pill" data-family="Gourmand">Gourmand</button>
       </div>
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="Search fragrances..." autocomplete="off" aria-autocomplete="list" aria-controls="searchSuggestions" />
+        <div id="searchSuggestions" class="search-suggestions" hidden></div>
+      </div>
       <div class="control-grid">
-        <input type="search" id="searchInput" placeholder="Search fragrances..." autocomplete="off" />
         <select id="categoryFilter" aria-label="Category">
           <option value="all">All Categories</option>
           <option value="Designer">Designer</option>
@@ -181,22 +185,23 @@
     </div>
   </footer>
 
+  <div id="quizModal" class="modal hidden" role="dialog" aria-labelledby="quizTitle">
+    <div class="modal-content modal-content--quiz">
+      <button type="button" id="closeQuiz" class="close-btn" aria-label="Close">&times;</button>
+      <h2 id="quizTitle">Scent Finder</h2>
+      <div class="quiz-progress-wrap"><div id="quizProgress" class="quiz-progress"></div></div>
+      <div id="quizBody" class="quiz-body"></div>
+    </div>
+  </div>
+
   <script src="scent-profiles.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/pdp.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/ui.js"></script>
   <script src="app.js"></script>
-  <script>
-    document.querySelectorAll("[data-jump-category]").forEach((card) => {
-      card.addEventListener("click", () => {
-        const cat = card.dataset.jumpCategory;
-        const filter = document.getElementById("categoryFilter");
-        if (filter) filter.value = cat;
-        document.querySelectorAll(".category-pill").forEach((p) => {
-          p.classList.toggle("is-active", p.dataset.category === cat);
-        });
-        if (typeof setCategoryFilter === "function") setCategoryFilter(cat);
-        else if (typeof renderProducts === "function") renderProducts();
-        document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-  </script>
 </body>
 </html>
